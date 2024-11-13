@@ -8,7 +8,7 @@
     }
 
     .primary-border {
-        @apply border-2 border-primary-500 border-solid;
+        @apply border-2 border-solid border-primary-500;
     }
 }
 
@@ -17,12 +17,17 @@
         @apply text-gray-200;
     }
     .text-prominent {
-        @apply text-gray-50 font-semibold;
+        @apply font-semibold text-gray-50;
     }
+}
+
+:root {
+    font-size: 18px;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Sour Gummy";
 }

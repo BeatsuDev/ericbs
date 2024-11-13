@@ -1,6 +1,4 @@
 <template>
-    <div class="w-full p-4 bg-gray-900 text-normal min-h-dvh">
-        <NuxtRouteAnnouncer />
-        <HoverableCard> Something here </HoverableCard>
-    </div>
+    <NuxtRouteAnnouncer />
+    <div class="w-full bg-gray-900 text-normal min-h-dvh">Hello this is a test</div>
 </template>
