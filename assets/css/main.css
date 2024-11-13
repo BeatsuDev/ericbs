@@ -14,10 +14,10 @@
 
 @layer utilities {
     .text-normal {
-        @apply text-gray-200;
+        @apply text-gray-800;
     }
     .text-prominent {
-        @apply font-semibold text-gray-50;
+        @apply font-semibold text-gray-950;
     }
 }
 

@@ -1,4 +1,8 @@
 <template>
     <NuxtRouteAnnouncer />
-    <div class="w-full bg-gray-900 text-normal min-h-dvh">Hello this is a test</div>
+    <div class="w-full min-h-dvh text-normal bg-gray-200">
+        <NuxtLayout class="w-full">
+            <NuxtPage />
+        </NuxtLayout>
+    </div>
 </template>
