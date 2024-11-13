@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .text-normal {
+        @apply text-gray-200;
+    }
+    .text-prominent {
+        @apply text-gray-50 font-semibold;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
