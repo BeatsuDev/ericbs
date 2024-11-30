@@ -14,15 +14,18 @@ jobs:
 
       - name: Deploy
         env:
+          KEY: ${{ secrets.PRIVATE_KEY }}
           USER: ${{ secrets.USER }}
           HOST: ${{ secrets.HOST }}
         run: |
           cd .output/public
-          tar -czvf * | ssh -i ${{ secrets.PRIVATE_KEY }} $USER@$HOST "cat > /var/www/tarball.tar.gz"
+          echo "$KEY" > private_key
+          tar -czvf * | ssh -i private_key $USER@$HOST "cat > /var/www/tarball.tar.gz"
           ssh -i ${{ secrets.PRIVATE_KEY }} $USER@$HOST
           cd /var/www
           ./update tarball.tar.gz
           exit
 
       - name: Cleanup
-        run: rm ~/.ssh/private_key
+        if: always()
+        run: rm -f private_key
