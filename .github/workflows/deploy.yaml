@@ -21,13 +21,13 @@ jobs:
         env:
           USER: ${{ secrets.USER }}
           HOST: ${{ secrets.HOST }}
-        run:
-          - cd .output/public
-          - tar -czvf * | ssh $USER@$HOST "cat > /var/www/tarball.tar.gz"
-          - ssh $USER@$HOST
-          - cd /var/www
-          - ./update tarball.tar.gz
-          - exit
+        run: |
+          cd .output/public
+          tar -czvf * | ssh $USER@$HOST "cat > /var/www/tarball.tar.gz"
+          ssh $USER@$HOST
+          cd /var/www
+          ./update tarball.tar.gz
+          exit
 
       - name: Cleanup
         run: rm ~/.ssh/private_key
