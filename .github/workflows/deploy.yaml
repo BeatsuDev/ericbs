@@ -20,12 +20,10 @@ jobs:
         run: |
           cd .output/public
           echo "$KEY" > private_key
-          tar -czvf * | ssh -i private_key $USER@$HOST "cat > /var/www/tarball.tar.gz"
-          ssh -i ${{ secrets.PRIVATE_KEY }} $USER@$HOST
-          cd /var/www
-          ./update tarball.tar.gz
+          tar -cz . | ssh -i private_key $USER@$HOST "cat > /var/www/tarball.tar.gz"
+          ssh -i ${{ secrets.PRIVATE_KEY }} $USER@$HOST "cd /var/www && ./update tarball.tar.gz"
           exit
 
-      - name: Cleanup
+      - name: Clean
         if: always()
         run: rm -f private_key
