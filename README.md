@@ -19,7 +19,7 @@ sudo apt install lighttpd
 then configure it:
 
 Write this to `/etc/lighttpd/lighttpd.conf` (for example by copying the contents, issuing the command `sudo vi /etc/lighttpd/lighttpd.conf` then press `i`, then `ctrl+shift+v`, then `esc`, `:wq`):
-```toml
+```conf
 server.modules = (
         "mod_indexfile",
         "mod_access",
