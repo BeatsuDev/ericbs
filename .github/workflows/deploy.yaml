@@ -1,0 +1,31 @@
+branches: main
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
+      - run: bun run generate
+
+      - name: Add SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: echo "$SSH_PRIVATE_KEY" > ~/.ssh/private_key
+
+      - name: Deploy
+        env:
+          USER: ${{ secrets.USER }}
+          HOST: ${{ secrets.HOST }}
+        run: cd .output/public
+        run: tar -czvf * | ssh $USER@$HOST "cat > /var/www/tarball.tar.gz"
+        run: ssh $USER@$HOST
+        run: cd /var/www
+        run: ./update tarball.tar.gz
+        run: exit
+
+      - name: Cleanup
+        run: rm ~/.ssh/private_key
