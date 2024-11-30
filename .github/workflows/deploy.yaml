@@ -13,9 +13,6 @@ jobs:
       - run: bun run generate
 
       - name: Deploy
-        env:
-          USER: ${{ secrets.USER }}
-          HOST: ${{ secrets.HOST }}
         run: |
           mkdir -p ~/.ssh
           echo ${{ secrets.PRIVATE_KEY }} > ~/.ssh/id_ed25519
