@@ -14,16 +14,17 @@ jobs:
 
       - name: Deploy
         env:
-          KEY: ${{ secrets.PRIVATE_KEY }}
           USER: ${{ secrets.USER }}
           HOST: ${{ secrets.HOST }}
         run: |
+          mkdir -p ~/.ssh
+          echo ${{ secrets.PRIVATE_KEY }} > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan $HOST > ~/.ssh/known_hosts
           cd .output/public
-          echo "$KEY" > private_key
-          tar -cz . | ssh -i private_key $USER@$HOST "cat > /var/www/tarball.tar.gz"
-          ssh -i ${{ secrets.PRIVATE_KEY }} $USER@$HOST "cd /var/www && ./update tarball.tar.gz"
-          exit
+          tar -cz . | ssh $USER@$HOST "cat > /var/www/tarball.tar.gz"
+          ssh $USER@$HOST "cd /var/www && ./update tarball.tar.gz"
 
       - name: Clean
         if: always()
-        run: rm -f private_key
+        run: rm -fr ~/.ssh
