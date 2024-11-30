@@ -19,8 +19,8 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan $HOST > ~/.ssh/known_hosts
           cd .output/public
-          tar -cz . | ssh $USER@$HOST "cat > /var/www/tarball.tar.gz"
-          ssh $USER@$HOST "cd /var/www && ./update tarball.tar.gz"
+          tar -cz . | ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cat > /var/www/tarball.tar.gz"
+          ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /var/www && ./update tarball.tar.gz"
 
       - name: Clean
         if: always()
