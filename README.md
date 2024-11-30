@@ -8,6 +8,7 @@ Prerequisites:
 Steps:
 - [install and configure lighttpd for static website hosting](#install-and-configure-lighttpd-for-static-hosting)
 - [move website to server + setup zero-downtime website updating and versioning](#host-website-with-versioning)
+- [setup HTTPS with letsencrypt](#setting-up-https-with-letsencrypt)
 - [setup deployment in CD](#setting-up-cd)
 
 ### Install and configure lighttpd for static hosting
