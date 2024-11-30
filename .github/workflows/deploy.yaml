@@ -17,10 +17,10 @@ jobs:
           mkdir -p ~/.ssh
           echo ${{ secrets.PRIVATE_KEY }} > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p ${{ secrets.PORT }} ${{ secrets.HOST }} > ~/.ssh/known_hosts
+          ssh-keyscan -vv -p ${{ secrets.PORT }} ${{ secrets.HOST }} > ~/.ssh/known_hosts
           cd .output/public
-          tar -cz . | ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cat > /var/www/tarball.tar.gz"
-          ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /var/www && ./update tarball.tar.gz"
+          tar -cz . | ssh -vv ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cat > /var/www/tarball.tar.gz"
+          ssh -vv ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /var/www && ./update tarball.tar.gz"
 
       - name: Clean
         if: always()
