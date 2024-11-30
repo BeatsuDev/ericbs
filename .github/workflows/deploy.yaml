@@ -12,19 +12,14 @@ jobs:
       - run: bun install
       - run: bun run generate
 
-      - name: Add SSH key
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: echo "$SSH_PRIVATE_KEY" > ~/.ssh/private_key
-
       - name: Deploy
         env:
           USER: ${{ secrets.USER }}
           HOST: ${{ secrets.HOST }}
         run: |
           cd .output/public
-          tar -czvf * | ssh $USER@$HOST "cat > /var/www/tarball.tar.gz"
-          ssh $USER@$HOST
+          tar -czvf * | ssh -i ${{ secrets.PRIVATE_KEY }} $USER@$HOST "cat > /var/www/tarball.tar.gz"
+          ssh -i ${{ secrets.PRIVATE_KEY }} $USER@$HOST
           cd /var/www
           ./update tarball.tar.gz
           exit
