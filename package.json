@@ -6,7 +6,6 @@
         "build": "nuxt build",
         "dev": "nuxt dev",
         "generate": "nuxt generate",
-        "deploy": "nuxt generate && ./deploy.sh",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare"
     },
