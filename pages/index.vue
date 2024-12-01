@@ -12,7 +12,7 @@
             }">
             <img id="header-image"
                 class="object-cover rounded-full border-solid border-gray-950 border-8 select-none animate-[spin_linear_60s_infinite]"
-                src="/images/hello-there.webp" alt="Me on a banana" draggable="false" />
+                src="/images/hello-there.webp" alt="Me looking into camera" draggable="false" />
             <Transition name="fade" leave-from-class="opacity-0.75" leave-to-class="opacity-0"
                 leave-active-class="ease-out duration-[800ms]">
                 <p v-if="!movedImage" class="mt-2 animate-bounce">Move me around!</p>
