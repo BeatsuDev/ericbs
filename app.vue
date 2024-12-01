@@ -21,7 +21,7 @@ useSeoMeta({
     description: descriptionString,
     charset: "utf-8",
     ogLocale: "en_GB",
-    ogImage: "/assets/imgs/me-on-banana.webp",
+    ogImage: "https://ericbs.com/images/me-on-banana.webp",
     ogUrl: "https://ericbs.com",
     ogType: "website",
 })

@@ -12,7 +12,7 @@
             }">
             <img id="header-image"
                 class="object-cover rounded-full border-solid border-gray-950 border-8 select-none animate-[spin_linear_60s_infinite]"
-                src="/assets/imgs/hello-there.webp" alt="Me on a banana" draggable="false" />
+                src="/images/hello-there.webp" alt="Me on a banana" draggable="false" />
             <Transition name="fade" leave-from-class="opacity-0.75" leave-to-class="opacity-0"
                 leave-active-class="ease-out duration-[800ms]">
                 <p v-if="!movedImage" class="mt-2 animate-bounce">Move me around!</p>
@@ -21,7 +21,7 @@
     </header>
     <main class="py-8">
         Here's the server currently serving you this website. Bon appétit!
-        <img class="w-4/5 lg:w-2/3 mx-auto my-4" src="/assets/imgs/server.webp"
+        <img class="w-4/5 lg:w-2/3 mx-auto my-4" src="/images/server.webp"
             alt="Programmers Duck protecting the Raspberry Pi currently hosting this website.">
         I take security very seriously, so I've hired an on-site security guard to protect the server, as you can see.
     </main>
