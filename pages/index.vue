@@ -6,8 +6,8 @@
             <p id="subtitle" class="italic">Try spelling that first try!</p>
         </div>
         <div ref="imageElement" class="h-32 self-end aspect-square absolute right-0 cursor-pointer"
-            @mousedown="movedImage = true; moving = true" @mouseup="moving = false" @mouseleave="moving = false"
-            @mousemove="moveImage" :style="{
+            @mousedown="movedImage = true; moving = true"
+            :style="{
                 transform: `translate(${offset.x}px, ${offset.y}px)`,
             }">
             <img id="header-image"
@@ -44,4 +44,8 @@ function moveImage(event: MouseEvent) {
     offset.value.x += event.movementX;
     offset.value.y += event.movementY;
 }
+document.addEventListener("mousemove", moveImage);
+document.addEventListener("mouseup", () => {
+    moving.value = false;
+});
 </script>
