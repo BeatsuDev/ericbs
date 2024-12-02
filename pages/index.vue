@@ -3,7 +3,9 @@
         class="relative flex h-48 md:items-center flex-col md:flex-row border-b-4 border-solid border-gray-950 pb-8 mt-4">
         <div id="title-container" class="w-2/3 lg:w-full">
             <h1 id="title" class="text-4xl relative">
-                <input type="text" class="absolute w-[7.65rem] left-[5.6rem]" maxlength="7">
+                <Transition enter-active-class="duration-300" enter-from-class="opacity-0" enter-to-class="opacity-1">
+                    <input v-if="showInput" type="text" class="absolute w-[7.65rem] left-[5.6rem]" maxlength="7">
+                </Transition>
                 Eric Bieszczad-Stie
             </h1>
             <p id="subtitle" class="italic">Try spelling that first try!</p>
@@ -50,4 +52,9 @@ document.addEventListener("mousemove", moveImage);
 document.addEventListener("mouseup", () => {
     moving.value = false;
 });
+
+// Typing my name
+const showInput = ref(false);
+
+setTimeout(() => showInput.value = true, 4000);
 </script>
