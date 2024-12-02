@@ -3,8 +3,10 @@
         class="relative flex h-48 md:items-center flex-col md:flex-row border-b-4 border-solid border-gray-950 pb-8 mt-4">
         <div id="title-container" class="w-2/3 lg:w-full">
             <h1 id="title" class="text-4xl relative">
-                <Transition enter-active-class="duration-300" enter-from-class="opacity-0" enter-to-class="opacity-1">
-                    <input v-if="showInput" type="text" class="absolute w-[7.65rem] left-[5.6rem]" maxlength="7">
+                <Transition enter-active-class="duration-200" enter-from-class="opacity-0" enter-to-class="opacity-1"
+                    leave-from-class="opacity-1" leave-active-class="duration-200" leave-to-class="opacity-0">
+                    <input ref="sirnameInput" @keydown="checkName" v-if="showInput" type="text"
+                        class="absolute w-[7.65rem] left-[5.6rem] outline-none" maxlength="7">
                 </Transition>
                 Eric Bieszczad-Stie
             </h1>
@@ -32,6 +34,8 @@
 </template>
 
 <script setup lang="ts">
+import JSConfetti from "js-confetti";
+
 definePageMeta({
     layout: "reader",
 });
@@ -54,7 +58,21 @@ document.addEventListener("mouseup", () => {
 });
 
 // Typing my name
+const jsConfetti = new JSConfetti()
 const showInput = ref(false);
+const sirnameInput = ref<HTMLInputElement | null>(null);
 
 setTimeout(() => showInput.value = true, 4000);
+
+function checkName(event: KeyboardEvent) {
+    if (sirnameInput.value?.value + event.key === "ieszcza") {
+        jsConfetti.addConfetti({
+            emojis: ["🎉", "🎊", "✅"],
+            emojiSize: 40,
+            confettiNumber: 100,
+        });
+
+        setTimeout(() => showInput.value = false, 1000);
+    }
+}
 </script>
