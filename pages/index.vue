@@ -2,12 +2,14 @@
     <header
         class="relative flex h-48 md:items-center flex-col md:flex-row border-b-4 border-solid border-gray-950 pb-8 mt-4">
         <div id="title-container" class="w-2/3 lg:w-full">
-            <h1 id="title" class="text-4xl">Eric Bieszczad-Stie</h1>
+            <h1 id="title" class="text-4xl relative">
+                <input type="text" class="absolute w-[7.65rem] left-[5.6rem]" maxlength="7">
+                Eric Bieszczad-Stie
+            </h1>
             <p id="subtitle" class="italic">Try spelling that first try!</p>
         </div>
         <div ref="imageElement" class="h-32 self-end aspect-square absolute right-0 cursor-pointer"
-            @mousedown="movedImage = true; moving = true"
-            :style="{
+            @mousedown="movedImage = true; moving = true" :style="{
                 transform: `translate(${offset.x}px, ${offset.y}px)`,
             }">
             <img id="header-image"
