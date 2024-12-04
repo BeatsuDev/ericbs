@@ -14,7 +14,7 @@
         </div>
         <div>
             <DraggableElement @move="() => hasMoved = true"
-                class="h-32 self-end rounded-full overflow-hidden aspect-square cursor-pointer">
+                class="h-32 self-end rounded-full overflow-hidden aspect-square">
                 <img id="header-image" class="object-cover animate-[spin_linear_60s_infinite]"
                     src="/images/hello-there.webp" alt="Me looking into camera" draggable="false" />
             </DraggableElement>

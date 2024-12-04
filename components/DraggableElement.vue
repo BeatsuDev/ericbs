@@ -1,7 +1,8 @@
 <template>
-    <div ref="draggedElement" class="border-gray-950 border-8 select-none" @mousedown="moving = true" :style="{
-        transform: `translate(${offset.x}px, ${offset.y}px)`,
-    }">
+    <div ref="draggedElement" class="border-gray-950 border-8 select-none cursor-pointer" @mousedown="moving = true"
+        :style="{
+            transform: `translate(${offset.x}px, ${offset.y}px)`,
+        }">
         <slot></slot>
     </div>
 </template>
