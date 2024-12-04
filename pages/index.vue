@@ -11,7 +11,7 @@
                 Eric Bieszczad-Stie
             </h1>
             <HyperLink @click="showInput = true">
-                <p id="subtitle" class="italic">Try spelling that first try!</p>
+                <p id="subtitle" class="italic">Try spelling that!</p>
             </HyperLink>
         </div>
         <div>
