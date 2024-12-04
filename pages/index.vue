@@ -10,7 +10,9 @@
                 </Transition>
                 Eric Bieszczad-Stie
             </h1>
-            <p id="subtitle" class="italic">Try spelling that first try!</p>
+            <HyperLink @click="showInput = true">
+                <p id="subtitle" class="italic">Try spelling that first try!</p>
+            </HyperLink>
         </div>
         <div>
             <DraggableElement @move="() => hasMoved = true"
@@ -53,8 +55,6 @@ const hasMoved = ref(false);
 const jsConfetti = new JSConfetti()
 const showInput = ref(false);
 const sirnameInput = ref<HTMLInputElement | null>(null);
-
-setTimeout(() => showInput.value = true, 4000);
 
 function checkName(event: KeyboardEvent) {
     if (sirnameInput.value?.value + event.key === "ieszcza") {
