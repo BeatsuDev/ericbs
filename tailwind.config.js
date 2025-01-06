@@ -17,6 +17,8 @@ export default {
             text: colors.neutral,
             primary: colors.emerald,
             secondary: colors.cyan,
+            success: colors.green,
+            error: colors.red,
         },
         extend: {},
     },
