@@ -1,5 +1,5 @@
 <template>
-    <div class="h-dvh flex flex-col w-full md:w-4/5 lg:w-3/5 py-8 text-center mx-auto">
+    <div class="h-dvh flex flex-col py-8 text-center">
 
         <h1 class="text-6xl mb-4 text-primary-500">Did I send it?</h1>
         <p>
@@ -40,6 +40,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+    layout: "reader",
+})
+
 type GPGKey = {
     from: string;
     to: string;
