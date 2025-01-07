@@ -26,7 +26,7 @@
                     <td>{{ key.to }}</td>
                     <td>{{ key.email }}</td>
                     <td>
-                        <a class="underline text-secondary-600" :href="key.url" download>Download</a>
+                        <HyperLink :href="key.url" download>Download</HyperLink>
                     </td>
                     <td>
                         <span v-if="key.revoked" class="text-error-500 font-extrabold">Revoked</span>
@@ -40,6 +40,8 @@
 </template>
 
 <script setup lang="ts">
+import HyperLink from '~/components/HyperLink.vue';
+
 definePageMeta({
     layout: "reader",
 })
