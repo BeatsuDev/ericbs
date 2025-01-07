@@ -28,9 +28,8 @@
     </header>
     <main class="py-8">
         Here's the server currently serving you this website. Bon appétit!
-        <p class="absolute text-sm text-center w-48 left-1/2 -translate-x-1/2 translate-y-32">Oh no, is that a backdoor
-            into
-            the server??
+        <p class="absolute text-sm text-center w-48 left-1/2 -translate-x-1/2 translate-y-32">
+            Oh no, is that a backdoor into the server??
             <span class="text-xl">🚪</span>
         </p>
         <DraggableElement class="mx-auto my-4 w-4/5 lg:w-2/3 ">
