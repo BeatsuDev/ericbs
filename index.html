@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gradients!</title>
     <style>
+        :root {
+            --cursor-color: rgba(224, 219, 209, 0.7);
+            --cursor-border: rgba(240, 240, 230, 1);
+        }
+
         ::-webkit-scrollbar {
             width: 0px;
+        }
+
+        * {
+            cursor: none;
+        }
+
+        html {
+            scroll-snap-type: y proximity;
         }
 
         body {
@@ -14,7 +27,6 @@
             padding: 0;
             color: #fcfafc;
             background-color: #111011;
-            cursor: none;
         }
         
         #cursor {
@@ -24,12 +36,15 @@
 
             mix-blend-mode: difference;
 
-            background-color: rgba(224, 219, 209, 0.7);
-            border: 0.2rem solid rgba(240, 240, 230, 1);
+            background-color: var(--cursor-color);
+            border: 0.2rem solid var(--cursor-border);
             width: 2rem;
             height: 2rem;
             
             transition: width 100ms, height 100ms, border-radius 100ms;
+            animation-timing-function: linear;
+            animation-duration: 500ms;
+            animation-iteration-count: infinite;
             user-select: none;
         }
 
@@ -61,11 +76,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            scroll-snap-align: start;
         }
 
         p {
             font-size: 100px;
             z-index: 20;
+        }
+
+        a {
+            color: inherit;
         }
 
         #circle1 {
@@ -112,27 +133,32 @@
 
             background: radial-gradient(#D7E638, #ecf772);
         }
+
+        @keyframes spinning {
+            0% { transform: rotate(0) }
+            100% { transform: rotate(360deg) }
+        }
     </style>
 </head>
-<body>
+<body dir="ltr">
     <div id="scrollbar"><div id="handle"></div></div>
     <div id="cursor"></div>
     <div id="circle1"></div>
     <div id="circle2"></div>
     <div id="circle3"></div>
     <section id="section1">
-        <p>
-            Hi, this is a landing page
+        <p data-cursor="text">
+            Hey there! I'm Eric Bieszczad-Stie.
         </p>
     </section>
     <section id="section2">
-        <p>
-            Hello! I am section two.
+        <p data-cursor="text">
+            I'm a programmer! 
         </p>
     </section>
     <section id="section3">
-        <p>
-            Wow, there's another section!?
+        <p data-cursor="link">
+            <a href="https://github.com/BeatsuDev" target="_blank">Check me out on GitHub</a>
         </p>
     </section>
     <script>
@@ -169,23 +195,40 @@
             cursor.style.borderWidth = "0.1rem";
         }
 
+        const changeToLinkCursor = event => {
+            cursorMode = "link";
+            cursor.style.width = "3.5rem";
+            cursor.style.height = "3rem";
+            cursor.style.backgroundColor = "rgba(24, 30, 230, 0.6)";
+            cursor.style.borderRadius = "100%";
+            cursor.style.animationName = "spinning";
+        }
+
         const changeToNormalCursor = event => {
             cursorMode = "normal";
             cursor.style.width = "2rem";
             cursor.style.height = "2rem";
             cursor.style.borderRadius = "100%";
             cursor.style.borderWidth = "0.2rem";
+            cursor.style.backgroundColor = "var(--cursor-color)";
+            cursor.style.animationName = "";
         }
 
         document.onmousemove = updatePosition;
         document.onmousedown = increaseCursorSize;
         document.onmouseup = decreaseCursorSize;
 
-        const textNodes = [...document.querySelectorAll("h1"), ...document.querySelectorAll("p")];
+        const textNodes = [document.querySelectorAll("[data-cursor='text']")];
         textNodes.forEach(node => {
             node.onmouseenter = changeToTextCursor;
             node.onmouseleave = changeToNormalCursor;
         });
+
+        const anchorNodes = [...document.querySelectorAll("[data-cursor='link']")];
+        anchorNodes.forEach(node => {
+            node.onmouseenter = changeToLinkCursor;
+            node.onmouseleave = changeToNormalCursor;
+        })
 
     </script>
     <script src="scrollbar.js"></script>
